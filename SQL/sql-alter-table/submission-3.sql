@@ -1,19 +1,16 @@
-CREATE TABLE videos (
-    id INTEGER,
-    name TEXT DEFAULT 'Untitled',
-    is_published BOOLEAN DEFAULT false
+CREATE TABLE books (
+  id INTEGER,
+  title TEXT,
+  author TEXT
 );
+-- Do not modify above this line --
+
+ALTER TABLE books ADD COLUMN published_year INTEGER;
+ALTER TABLE books RENAME COLUMN id to isbn;
+ALTER TABLE books DROP COLUMN author;
 
 -- Do not modify below this line --
-INSERT INTO videos (id, name, is_published) 
-VALUES (1, 'My Video', true),
-       (2, 'Another Video', false);
-
-INSERT INTO videos (id)
-VALUES (3),
-       (4);
-
-INSERT INTO videos (name)
-VALUES ('Video with no ID');
-
-SELECT * FROM videos;
+SELECT column_name, data_type, column_default
+FROM information_schema.columns
+WHERE table_name = 'books'
+ORDER BY column_name;
